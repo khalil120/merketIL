@@ -16,18 +16,8 @@
     <link rel="stylesheet" type="text/css" href="font/flaticon.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 
+
     <title>marketIL </title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.19.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
 
 </head>
 
@@ -70,8 +60,8 @@
             </h3>
         </div><br>
         <div class="btn-group" style="width: 100%;" role="group" aria-label="Basic example">
-            <button type="button" style="width: 20%;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: x-large;" class="btn btn-secondary" onclick="openPage('AboutUs')">מי אנחנו <i class="fa fa-users fa-1x" style="color: whitesmoke;"></i></button>
-            <button type="button" style="width: 20%;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: x-large;" class="btn btn-secondary" onclick="openPage('contactPage')">צור קשר <i class="fa fa-envelope fa-1x" style="color: whitesmoke;"></i></button>
+            <button type="button" style="width: 20%;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: x-large;" class="btn btn-secondary" onclick="openPage('aboutUS')">מי אנחנו <i class="fa fa-users fa-1x" style="color: whitesmoke;"></i></button>
+            <button type="button" style="width: 20%;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: x-large;" class="btn btn-secondary" onclick="openPage('contactUS')">צור קשר <i class="fa fa-envelope fa-1x" style="color: whitesmoke;"></i></button>
             <button type="button" style="width: 20%;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size: x-large;" class="btn btn-secondary" onclick="openPage('Catalog')">חיפוש <i class="fa fa-search fa-1x" style="color: whitesmoke;"></i></button>
             <button type="button" style="width: 20%;  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: x-large;" class="btn btn-secondary" onclick="openPage('Main')">דף הבית <i class="fa fa-home fa-1x" style=" color: whitesmoke;"></i></button>
         </div>
@@ -93,7 +83,7 @@
         </div>
     </div>
 
-    <div style="background:black; width: 100%; height: 400px;">
+    <footer style="background:black; width: 100%; height: 400px;">
         <div class="container">
             <br><br><br>
             <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: large; font-weight: bold; color: white; float: right;">
@@ -102,11 +92,11 @@
             <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: medium; color: gray; float: right;">
                 השתתף במייל וקבל כל המבצעים וההנחות העדכניים בזמן
             </h3>
-            <div class="input-group mb-3" style="float: left; width: 600px;">
+            <div class="input-group mb-3" style="float: left; width: auto;">
                 <div class="input-group-prepend">
                     <button class="btn btn-outline-primary" style="color: darkcyan; border-color: lightgray;" onclick="subscribe()" type="button">Subscribe</button>
                 </div>
-                <input type="text" class="form-control" id="label" placeholder="Email Address" style="width: 85%;">
+                <input type="text" class="form-control" id="label" placeholder="Email Address" style="width: 95%;">
             </div><br><br>
             <p id="welcome" style="color: darkcyan;border-color: lightgray;border:1px;"></p>
 
@@ -127,30 +117,222 @@
             <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: medium; color: gray; float: right;">
                 0505890122 - אחמד חג'אג'רה
             </h3><br><br>
-
-
             <hr style="border-color: lightgray;">
             <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: small; color: gray; float: left;">
                 כל הזכויות שמורות.© 2020
             </h3><br><br>
+        </div>
+    </footer>
 
+
+    <!------------------------------------------------------------MODALS------------------------------------------------------------------------------>
+
+    <div class="modal" id="signInModal">
+        <div class="modal-dialog" id="signInModalContent">
+            <div class="modal-content">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <br>
+                    <br>
+                    <input type="email" class="form-control user_info_inputs" id="email_input" placeholder="Email">
+                    <br>
+                    <input type="password" class="form-control user_info_inputs" id="password_input" placeholder="Password">
+                    <br>
+                    <div style="margin: auto; width: 80px">
+                        <button type="button" class="btn btn-primary" style="background-color: darkcyan; border: darkcyan; width: 90px;" id="sign_in_button" onclick="signIn()">Sign in</button>
+                    </div>
+
+                    <p id="sign_in_error"></p>
+                    <div style="margin: auto; width: 80px">
+                        <button id="create_acc_button" class="btn btn-primary" style="background: 0; border: 0; font-size: large; width: 90px; color: darkcyan; margin-top: -10px;" data-toggle="modal" data-target="#signUpModal" data-dismiss="modal" onclick="emptySelectors()">Sign up</button>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="signUpModal">
+        <div class="modal-dialog" id="signUpModalContent">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <br>
+                    <h3 class="modal_headers">Your details: </h3>
+                    <input type="text" class="form-control user_info_inputs" id="fullname_signup" placeholder="full name">
+                    <br>
+                    <input type="email" class="form-control user_info_inputs" id="email_signup" placeholder="Email">
+                    <br>
+                    <input type="password" class="form-control user_info_inputs" id="password_signup" placeholder="Password">
+                    <h3 class="modal_headers">select your Phone:</h3>
+                    <select class="form-control user_info_inputs" id="car_year_selector"></select>
+                    <br>
+                    <select class="form-control user_info_inputs" id="car_make_selector"></select>
+                    <br>
+                    <select class="form-control user_info_inputs" id="car_model_selector"></select>
+                    <br>
+
+                    <div style="margin: auto; width: 80px">
+                        <button type="button" class="btn btn-primary" style="background-color: goldenrod; border: goldenrod; width: 90px;" id="sign_up_button" onclick="signUp()">sign up</button>
+                    </div>
+
+                    <p id="sign_up_error"></p>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="userInfoModal">
+        <div class="modal-dialog" id="userInfoModalContent">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal_headers" id="user_full_name_header"></h3>
+                    <h4 class="modal_headers">Your cars</h4>
+                    <div id="car_update_div">
+                        <select class="form-control " id="car_year_selector_update"></select>
+                        <br>
+                        <select class="form-control " id="car_make_selector_update"></select>
+                        <br>
+                        <select class="form-control " id="car_model_selector_update"></select>
+                        <br>
+
+                        <div style="margin: auto; width: 120px">
+                            <button type="button" class="btn btn-primary" id="update_car" onclick="updateCar()" style="width: 100%; background-color: red">Edit</button>
+                        </div>
+                    </div>
+                    <div id="car_info_div">
+                        <input type="text" class="form-control user_info" id="car_year_info" readonly>
+                        <br>
+                        <input type="text" class="form-control user_info" id="car_make_info" readonly>
+                        <br>
+                        <input type="text" class="form-control user_info" id="car_model_info" readonly>
+                        <br>
+                        <div style="margin: auto; width: 120px">
+                            <button type="button" class="btn btn-primary" id="edit_car" onclick="showEditCarDiv()" style="width: 100%">Edit</button>
+                        </div>
+                    </div>
+                    <h4 class="modal_headers">Your orders</h4>
+                    <div style="overflow:scroll; height:300px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>order date</th>
+                                    <th>status</th>
+                                    <th>total price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="logout()" style="width: 100%">Log out</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="AddToCartModal">
+        <div class="modal-dialog" id="AddToCartModalContent">
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="orderModal">
+        <div class="modal-dialog" id="orderModalContent">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1>Order details</h1>
+                    <div style="overflow:auto; height:300px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>part name</th>
+                                    <th>part price</th>
+                                    <th>quantity</th>
+                                    <th>total price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderShopTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="msgModal">
+        <div class="modal-dialog" id="msgModalContent">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+
+
+            </div>
         </div>
     </div>
 
 
     <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
+            authDomain: "marketil.firebaseapp.com",
+            databaseURL: "https://marketil.firebaseio.com",
+            projectId: "marketil",
+            storageBucket: "marketil.appspot.com",
+            messagingSenderId: "101178652945",
+            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
+            measurementId: "G-TVHRDQN7PT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="main.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/7.19.1/firebase-app.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
 </body>
+
 
 </html>

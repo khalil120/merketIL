@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="font/flaticon.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.19.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <title>Contact Us</title>
+
+
+</head>
+
+<body>
+
+    <div class="bg-image"></div>
+
+    <div>
+        <h1 style=" position: absolute;transform: translate(-50%, -50%);left:50%;top:6%; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 50px; font-weight: bold; text-align: center; color: darkblue;">ליצור קשר</h1>
+        <h1 style=" position: absolute;transform: translate(-50%, -50%);left:50%;top:15%; margin-bottom: -55px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: large; font-weight: bold; text-align: center; color: darkblue;">
+            השאר פרטים ונחזור אליכם בהקדם</h1>
+        <div class="form-contr" style="height: 450px; margin-top: -20px; position: absolute;transform: translate(-50%, -50%);top:60%;">
+            <br><br>
+            <input id="nameI" type="text" class="form2" placeholder="Enter Full Name" style="width: 80%; "><br><br>
+            <input id="emailI" type="text" class="form2" placeholder="Enter Email Address" style="width: 80%;"><br><br>
+            <textarea type="text" id="content" class="form2" rows="3" placeholder="Message" style="margin-top: 70px; width: 80%; height: 170px;"></textarea>
+            <button type="button" class="btn btn-primary" id="ContactBtn" onclick="showMessage($('#nameI').val());" style="left: 50%; transform: translate(50%,50%); margin-left: 10px;  margin-top:-150px;">Send</button>
+        </div>
+        <p id="message1" style="text-align:center;color:grey;border:0;margin:0;font-size:25px;"></p>
+        <p id="message2" style="text-align:center;color:grey;border:0;margin:0;font-size:20px;"></p>
+    </div>
+    <script>
+        function showMessage(name) {
+            var msg = document.getElementById('content').value;
+            var mail = document.getElementById('emailI').value;
+            var name = document.getElementById('nameI').value;
+            if (msg == "" || mail == "" || name == "") {
+                document.getElementById("message1").innerHTML = "Somthing wrong.";
+                document.getElementById("message2").innerHTML = "please fill all the fields.";
+            } else {
+                document.getElementById("message1").innerHTML = "Your message was sent.";
+                document.getElementById("message2").innerHTML = "Thank you " + name + " for your ask, we will contact you soon .";
+                document.getElementById('ContactBtn').disabled = 'disabled';
+            }
+        }
+    </script>
+
+    <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+</body>
+
+</html>

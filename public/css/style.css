@@ -53,8 +53,8 @@ p {
 }
 
 #ContactBtn {
-    background-color: goldenrod;
-    border: goldenrod;
+    background-color: lightcoral;
+    border: lightcoral;
     width: 250px;
     height: 40px;
 }
@@ -69,9 +69,9 @@ p {
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/opacity/see-through */
-    color: rgb(255, 255, 200);
+    color: lightcoral;
     font-weight: bold;
-    border: 3px solid rgb(255, 255, 200);
+    border: 3px solid lightcoral;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -82,12 +82,10 @@ p {
 
 .form2 {
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/opacity/see-through */
-    color: rgb(255, 255, 200);
+    color: black;
     font-weight: bold;
-    border: 1px solid rgb(255, 255, 200);
+    border: 1px solid lightcoral;
     position: relative;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -159,7 +157,7 @@ p {
 }
 
 .bg-image {
-    background-image: url("pics/pic8.png");
+    background-image: url("../pics/MARKETIL.png");
     filter: blur(8px);
     -webkit-filter: blur(8px);
     height: 100%;
@@ -241,4 +239,8 @@ html {
     border: 0;
     background: 0;
     height: 12px;
+}
+
+.container-search {
+    margin-top: 30px;
 }
