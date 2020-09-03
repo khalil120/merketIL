@@ -1,0 +1,18 @@
+.container {
+    min-height: 100vh;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    background: url("../pics/search_ground.jpg");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 15px;
+}
+
+.row {
+    width: 100%;
+    flex-direction: column;
+}

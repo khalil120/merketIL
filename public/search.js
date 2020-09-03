@@ -1,29 +1,64 @@
-pa = Request(fonoApi)
-
-$('.submit').on('click', function() {
-
-    $('.search').fonoApi({
-        token: "86b89476caaf66eda3f21279b7711afc",
-        device: $('.devname').val(),
-        limit: 50,
-        template: function() {
-
-            // argument contains the data object // *returns html content
-            return $.map(arguments, function(obj, i) {
-
-                content = '<h3>' + obj.DeviceName + '</h3>';
-                content += '<table class="table table-striped" style="width:100%">';
-                content += '<tr><th>info</th><th>Description</th></tr>';
-
-                for (var key in obj) {
-                    content += "<tr><td>" + key + "</td><td>" + obj[key] + "</td><tr>";
-                }
-
-                content += "</table>";
-                return $('<div class="table-responsive"></div>').append(content);
-            });
-
+function getVideo() {
+    $.ajax({
+        type: 'GET',
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        data: {
+            key: 'AIzaSyDXMQa2QgfRoNXeCMz0pGtn_yXMlE8po_k',
+            q: "best mobiles",
+            part: 'snippet',
+            maxResults: 1,
+            type: 'video',
+            videoEmbeddable: true,
+        },
+        success: function(data) {
+            embedVideo(data)
+        },
+        error: function(response) {
+            console.log("Request Failed");
         }
     });
+}
 
-});
+function embedVideo(data) {
+    $('iframe').attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId)
+    $('h3').text(data.items[0].snippet.title)
+    $('.description').text(data.items[0].snippet.description)
+}
+
+
+function getVideo2() {
+
+    let flag = false;
+    let tmp = $('input#model').val();
+    if (tmp != "")
+        flag = true;
+
+    location.reload();
+    if (flag) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://www.googleapis.com/youtube/v3/search',
+            data: {
+                key: 'AIzaSyDXMQa2QgfRoNXeCMz0pGtn_yXMlE8po_k',
+                q: "iphone11",
+                part: 'snippet',
+                maxResults: 1,
+                type: 'video',
+                videoEmbeddable: true,
+            },
+            success: function(data) {
+                embedVideo(data)
+            },
+            error: function(response) {
+                console.log("Request Failed");
+            }
+        });
+    }
+}
+
+/*function clicked() {
+    let tmp = $('input#model').val();
+    if (tmp != "") {
+        getVideo();
+    }
+}*/

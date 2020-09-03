@@ -16,63 +16,75 @@
     <link rel="stylesheet" type="text/css" href="font/flaticon.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/search.css">
+    <script type="text/javascript" src="search.js"></script>
     <title>Search</title>
 </head>
 
 <body>
-
-    <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: xxlarge; font-weight: bold; text-align: center; color: darkcyan;">marketIL</h1><br>
-    <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: xxlarge; font-weight: bold; text-align: center; color: darkcyan;">קבל את כל הנתונים עבור המכשיר הנדרש</h1>
+    <p>
+        <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: xxlarge; font-weight: bold; text-align: center; color: darkcyan;">marketIL</h1><br></p>
+    <p>
+        <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: xxlarge; font-weight: bold; text-align: center; color: darkcyan;">קבל את כל הנתונים עבור המכשיר הנדרש</h1>
+    </p>
     <br><br>
-
-    <div class="container-search">
+    <div class="container">
         <div class="row">
-            <p>Search for your device</p>
-            <br><br>
-            <div class="form-group">
-                <input class="devname form-control" type="text"></input>
-            </div>
-            <div class="form-group">
-                <a href="#" class="form-control btn btn-primary submit">Submit</a>
+            <p class="row">
+                <h4 style="color: darkcyan;">Search of wanted device to get a review</h4>
+            </p>
+            <p>
+                <div class="form-group">
+                    <input id="model" class="devname form-control" type="text" placeholder="Device Name: "></input>
+                </div>
+            </p>
+            <p>
+                <div class="form-group">
+                    <button type="button" class="btn btn-info" style="width: 100%;" onclick="getVideo2()">Find: </button>
+                </div>
+            </p>
+            <div class="col">
+                <iframe class="video" src=""></iframe>
+                <h3>Video Title</h3>
+                <p class="description">Video Description</p>
+                <script language="javascript">
+                    getVideo();
+                </script>
             </div>
         </div>
-        <div class="search">
-            search system is ready
-        </div>
-    </div>
-    </div>
 
-    <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+
+        <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
          https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
-            authDomain: "marketil.firebaseapp.com",
-            databaseURL: "https://marketil.firebaseio.com",
-            projectId: "marketil",
-            storageBucket: "marketil.appspot.com",
-            messagingSenderId: "101178652945",
-            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
-            measurementId: "G-TVHRDQN7PT"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
-    <script src="search.js"></script>
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
+                authDomain: "marketil.firebaseapp.com",
+                databaseURL: "https://marketil.firebaseio.com",
+                projectId: "marketil",
+                storageBucket: "marketil.appspot.com",
+                messagingSenderId: "101178652945",
+                appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
+                measurementId: "G-TVHRDQN7PT"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        </script>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
