@@ -3,11 +3,14 @@ var currentUser = null;
 var cartShopCnt = 0;
 
 
-//auth.onAuthStateChanged(firebaseUser => {})
-
 function openPage(pageName) {
 
     $('#mainframe').attr('src', pageName + ".html")
+}
+
+function openPage2(pageName) {
+
+    $('#mainframe2').attr('src', pageName + ".html")
 }
 
 
@@ -53,6 +56,7 @@ function signIn() {
 function signUp() {
 
     $("#sign_up_error").hide();
+    $("#sign_up_success").hide();
     $("#fullname_signup").css("border-color", "#ccc");
     $("#email_signup").css("border-color", "#ccc");
     $("#password_signup").css("border-color", "#ccc");
@@ -67,21 +71,21 @@ function signUp() {
         return;
     }
 
+    $("#sign_up_success").show();
+
     auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
 
         if (user) {
-            var car = $('#car_make_selector').val() + "_" + $('#car_model_selector').val() + "_" + $('#car_year_selector').val();
+            let brand = $('#phone_brand_selector').val();
             firebase.database().ref('users/' + user.uid).set({
                 fullname: fullname,
-
-                //to be changed!!!!!!!
-                car: car
+                brand: brand
             });
 
             $("#sign_up_toast").toast('show');
             currentUser = user;
             currentUser.fullname = fullname;
-            currentUser.car = car; //////////////////////////////
+            currentUser.brand = brand;
         }
     }, function(error) {
         var errorCode = error.code;
@@ -113,6 +117,71 @@ function getUserFromCookies() {
     var cookies = decodeURIComponent(document.cookie);
     var arr = cookies.split(";");
     for (var i = 0; i < arr.length; i++) {
+        var cookie = arr[i];
+        while (cookie.charAt(0) == ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf("user=") == 0) {
+            userJson = cookie.substring("user=".length, cookie.length);
+            return JSON.parse(userJson);
+        }
+    }
+    return null;
+}
+
+
+function getUser(user) {
+    currentUser = user;
+    return firebase.ref('/users/' + user.uid).once('value').then(function(snapshot) {
+        currentUser.fullname = snapshot.val().fullname;
+        currentUser.brand = snapshot.val().brand;
+        saveUserCookie(currentUser);
+        $('#signInModal').hide();
+        $("#myacc").html(currentUser.fullname + "שלום");
+    });
+}
+
+
+function saveUserCookie(user) {
+    var jsonUser = 'user={"uid":"' + user.uid + '","fullname":"' + user.fullname + '","car":"' + user.car + '"}';
+    document.cookie = jsonUser;
+}
+
+function logout() {
+    deleteAllCookies();
+    $("#msgContent").html("bye bye " + currentUser.fullname)
+    $('.toast').toast('show');
+    currentUser = null;
+    $('#userInfoModal').modal('hide');
+}
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
+function showUserInfoModal() {
+    $("#user_full_name_header").text("hi " + currentUser.fullname)
+    $("#userInfoModal").modal("toggle");
+    var car = currentUser.car.split("_");
+    $("#car_year_info").val(car[2]);
+    $("#car_make_info").val(car[0]);
+    $("#car_model_info").val(car[1]);
+    //alert();
+
+}
+
+function getUserFromCookies() {
+    var cookies = decodeURIComponent(document.cookie);
+    var arr = cookies.split(";");
+    for (var i = 0; i < arr.length; i++) {
+        //console.log(arr[i])
         var cookie = arr[i];
         while (cookie.charAt(0) == ' ') {
             cookie = cookie.substring(1);

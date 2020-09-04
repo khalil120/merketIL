@@ -142,20 +142,14 @@
                     <div style="margin: auto; width: 80px">
                         <button type="button" class="btn btn-primary" style="background-color: darkcyan; border: darkcyan; width: 90px;" id="sign_in_button" onclick="signIn()">Sign in</button>
                     </div>
-
                     <p id="sign_in_error"></p>
                     <div style="margin: auto; width: 80px">
-                        <button id="create_acc_button" class="btn btn-primary" style="background: 0; border: 0; font-size: large; width: 90px; color: darkcyan; margin-top: -10px;" data-toggle="modal" data-target="#signUpModal" data-dismiss="modal" onclick="emptySelectors()">Sign up</button>
+                        <button id="create_acc_button" class="btn btn-primary" style="background: 0; border: 0; font-size: large; width: 90px; color: darkcyan; margin-top: -10px;" data-toggle="modal" data-target="#signUpModal" data-dismiss="modal">Sign up</button>
                     </div>
-
-
                 </div>
-
-
             </div>
         </div>
     </div>
-
     <div class="modal" id="signUpModal">
         <div class="modal-dialog" id="signUpModalContent">
             <div class="modal-content">
@@ -171,20 +165,20 @@
                     <br>
                     <input type="password" class="form-control user_info_inputs" id="password_signup" placeholder="Password">
                     <h3 class="modal_headers">select your Phone:</h3>
-                    <select class="form-control user_info_inputs" id="car_year_selector"></select>
+                    <select class="form-control user_info_inputs" id="phone_brand_selector">
+                        <option value="samsung"> Samsung </option>
+                        <option value="iphone"> Iphone </option>
+                        <option value="huawei"> Huawei </option>
+                        <option value="pixel"> Pixel(Google) </option>
+                    </select>
                     <br>
-                    <select class="form-control user_info_inputs" id="car_make_selector"></select>
-                    <br>
-                    <select class="form-control user_info_inputs" id="car_model_selector"></select>
-                    <br>
-
                     <div style="margin: auto; width: 80px">
-                        <button type="button" class="btn btn-primary" style="background-color: goldenrod; border: goldenrod; width: 90px;" id="sign_up_button" onclick="signUp()">sign up</button>
+                        <button type="button" class="btn btn-primary" style="background-color: lightcoral; border: lightcoral; width: 90px;" id="sign_up_button" onclick="signUp()">sign up</button>
                     </div>
 
                     <p id="sign_up_error"></p>
 
-
+                    <!--<p id="sign_up_success" style="color: green;">All set-up, welcome to MarkeIL</p>-->
                 </div>
 
 

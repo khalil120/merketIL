@@ -55,10 +55,3 @@ function getVideo2() {
         });
     }
 }
-
-/*function clicked() {
-    let tmp = $('input#model').val();
-    if (tmp != "") {
-        getVideo();
-    }
-}*/
