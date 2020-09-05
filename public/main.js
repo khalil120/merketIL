@@ -1,22 +1,24 @@
 const auth = firebase.auth();
+let database = firebase.database();
+
 var currentUser = null;
 var cartShopCnt = 0;
+let User_id;
 
 
 function openPage(pageName) {
 
-    $('#mainframe').attr('src', pageName + ".html")
+    $('#mainframe').attr('src', pageName + ".html");
 }
 
 function openPage2(pageName) {
 
-    $('#mainframe2').attr('src', pageName + ".html")
+    $('#mainframe2').attr('src', pageName + ".html");
 }
 
 
 function showSignIn() {
 
-    console.log("clicked")
 
     var user = getUserFromCookies();
     if (user == null) {
@@ -49,13 +51,15 @@ function signIn() {
             $("#password_input").css("border-color", "red")
         }
     });
+
+    $('#signInModal').modal('hide');
+
 }
 
 
 /*---------   sign up function  ---------*/
 function signUp() {
 
-    $("#sign_up_error").hide();
     $("#sign_up_success").hide();
     $("#fullname_signup").css("border-color", "#ccc");
     $("#email_signup").css("border-color", "#ccc");
@@ -71,7 +75,7 @@ function signUp() {
         return;
     }
 
-    $("#sign_up_success").show();
+
 
     auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
 
@@ -86,6 +90,8 @@ function signUp() {
             currentUser = user;
             currentUser.fullname = fullname;
             currentUser.brand = brand;
+
+            window.alert("Signup is Done - Welcome: " + fullname);
         }
     }, function(error) {
         var errorCode = error.code;
@@ -107,7 +113,8 @@ function signUp() {
             $("#sign_up_error").show();
         }
     });
-    $('signUpModal').hide();
+    $('#signUpModal').modal('hide');
+
 }
 
 
@@ -129,15 +136,19 @@ function getUserFromCookies() {
     return null;
 }
 
-
+////////////////////////////////////////////hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee//////////////////////////////////
 function getUser(user) {
+    console.log("wqygdhjk;rfghsjnkdl,."); ///////////////////
     currentUser = user;
-    return firebase.ref('/users/' + user.uid).once('value').then(function(snapshot) {
+    uid = user.uid;
+    console.log("user name " + currentUser.fullname); //////////////
+    console.log("user name " + currentUser.brand); /////////////////
+    return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
         currentUser.fullname = snapshot.val().fullname;
         currentUser.brand = snapshot.val().brand;
         saveUserCookie(currentUser);
         $('#signInModal').hide();
-        $("#myacc").html(currentUser.fullname + "שלום");
+        $("#myacc").html("Hi " + currentUser.fullname);
     });
 }
 
@@ -166,14 +177,11 @@ function deleteAllCookies() {
     }
 }
 
+
 function showUserInfoModal() {
-    $("#user_full_name_header").text("hi " + currentUser.fullname)
+    $("#user_full_name_header").text("Hi " + currentUser.fullname)
     $("#userInfoModal").modal("toggle");
-    var car = currentUser.car.split("_");
-    $("#car_year_info").val(car[2]);
-    $("#car_make_info").val(car[0]);
-    $("#car_model_info").val(car[1]);
-    //alert();
+    // alert();
 
 }
 
@@ -181,7 +189,6 @@ function getUserFromCookies() {
     var cookies = decodeURIComponent(document.cookie);
     var arr = cookies.split(";");
     for (var i = 0; i < arr.length; i++) {
-        //console.log(arr[i])
         var cookie = arr[i];
         while (cookie.charAt(0) == ' ') {
             cookie = cookie.substring(1);
@@ -192,4 +199,65 @@ function getUserFromCookies() {
         }
     }
     return null;
+}
+
+function setUserOrders() {
+    $('#ordersTableBody').empty();
+
+    console.log("11111111111111111111111111111111");
+    return firebase.database.ref('/orders/').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            $('#ordersTableBody').append($(' <tr>\n' +
+                '                                    <td>' + childSnapshot.val().model + '</td>\n' +
+                '                                    <td>' + childSnapshot.val().date + '</td>\n' +
+                '                                    <td>' + childSnapshot.val().status + '</td>\n' +
+                '                                    <td>' + childSnapshot.val().price + '</td>\n' +
+                '                                    <td>' + '<button type="button" class="btn btn-primary delete_btn" onclick="showOrder(' + "'" + childKey + "'" + ')">show</button>' + '</td>\n' +
+                '                                </tr>'));
+
+
+        });
+
+    })
+}
+
+function showEditCarDiv() {
+    $("#car_info_div").hide();
+    $("#car_update_div").show();
+}
+
+
+
+
+function showOrder(order_id) {
+    $("#orderShopTableBody").empty();
+    $('#orderModal').modal('toggle');
+    return database.ref('/orders/' + order_id).once('value').then(function(snapshot) {
+        var shopArr = JSON.parse(snapshot.val().shop)
+        for (var i = 0; i < shopArr.shop.length; i++) {
+            $('#orderShopTableBody').append($(' <tr id="' + shopArr.shop[i].part_id + '">\n' +
+                '                                    <td class="partname">' + '' + '</td>\n' +
+                '                                    <td class="partprice">' + '' + '</td>\n' +
+                '                                    <td class="qty">' + shopArr.shop[i].qty + '</td>\n' +
+                '                                    <td class="totalQtyPrice">' + '' + '</td>\n' +
+                '                                </tr>'));
+            database.ref('/parts/' + shopArr.shop[i].part_id).once('value').then(function(snapshot2) {
+                $('#' + snapshot2.key + ' .partname').html(snapshot2.val().name)
+                $('#' + snapshot2.key + ' .partprice').html(snapshot2.val().price)
+                var qty = $('#' + snapshot2.key + ' .qty').html();
+                $('#' + snapshot2.key + ' .totalQtyPrice').html(snapshot2.val().price * qty)
+
+                totalPrice = snapshot2.val().price * qty + totalPrice;
+                $("#totalPrice").text("total price: " + totalPrice)
+                if (totalPrice > 0) {
+                    $('#payBtn').attr("disabled", false);
+                }
+            });
+
+
+        }
+    });
+
 }
