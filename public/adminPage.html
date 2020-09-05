@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="font/flaticon.css">
+
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <title>marketIL</title>
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+
+
+    <div class="content">
+        <br><br><br>
+        <h2>Add Device</h2>
+        <input type="text" class="form-control parts_inputs" id="partname" placeholder="Device Name"><br>
+        <select class="form-control parts_inputs" id="brand">
+			<option>Check in Device brand</option>
+            <option>Samsung</option>
+            <option>Iphone</option>
+            <option>Huawie</option>
+            <option>Pixel</option>
+        </select><br>
+        <select class="form-control parts_inputs" id="OS">
+			<option>Form of OS</option>
+            <option>Android</option>
+            <option>IOS</option>
+        </select><br>
+        <input type="text" class="form-control parts_inputs" placeholder="Model" id="model"><br>
+        <input type="text" class="form-control parts_inputs" placeholder="Price" id="price"><br>
+        <input type="text" class="form-control parts_inputs" placeholder="pic url" id="picurl"><br>
+        <button type="button" class="btn btn-primary selector " style="width: 100px" onclick="addDevice()">Add Device</button>
+        <br><br>
+
+    </div>
+
+    <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
+            authDomain: "marketil.firebaseapp.com",
+            databaseURL: "https://marketil.firebaseio.com",
+            projectId: "marketil",
+            storageBucket: "marketil.appspot.com",
+            messagingSenderId: "101178652945",
+            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
+            measurementId: "G-TVHRDQN7PT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="main.js"></script>
+    <script src="admin.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

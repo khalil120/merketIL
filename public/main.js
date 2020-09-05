@@ -1,9 +1,9 @@
 const auth = firebase.auth();
-let database = firebase.database();
+//var database = firebase.database();
 
 var currentUser = null;
 var cartShopCnt = 0;
-let User_id;
+let User_id = null;
 
 
 function openPage(pageName) {
@@ -136,13 +136,8 @@ function getUserFromCookies() {
     return null;
 }
 
-////////////////////////////////////////////hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee//////////////////////////////////
 function getUser(user) {
-    console.log("wqygdhjk;rfghsjnkdl,."); ///////////////////
     currentUser = user;
-    uid = user.uid;
-    console.log("user name " + currentUser.fullname); //////////////
-    console.log("user name " + currentUser.brand); /////////////////
     return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
         currentUser.fullname = snapshot.val().fullname;
         currentUser.brand = snapshot.val().brand;
@@ -154,7 +149,7 @@ function getUser(user) {
 
 
 function saveUserCookie(user) {
-    var jsonUser = 'user={"uid":"' + user.uid + '","fullname":"' + user.fullname + '","car":"' + user.car + '"}';
+    var jsonUser = 'user={"uid":"' + user.uid + '","fullname":"' + user.fullname + '","brand":"' + user.brand + '"}';
     document.cookie = jsonUser;
 }
 
@@ -181,7 +176,7 @@ function deleteAllCookies() {
 function showUserInfoModal() {
     $("#user_full_name_header").text("Hi " + currentUser.fullname)
     $("#userInfoModal").modal("toggle");
-    // alert();
+
 
 }
 
@@ -243,7 +238,7 @@ function showOrder(order_id) {
                 '                                    <td class="qty">' + shopArr.shop[i].qty + '</td>\n' +
                 '                                    <td class="totalQtyPrice">' + '' + '</td>\n' +
                 '                                </tr>'));
-            database.ref('/parts/' + shopArr.shop[i].part_id).once('value').then(function(snapshot2) {
+            firebase.database().ref('/parts/' + shopArr.shop[i].part_id).once('value').then(function(snapshot2) {
                 $('#' + snapshot2.key + ' .partname').html(snapshot2.val().name)
                 $('#' + snapshot2.key + ' .partprice').html(snapshot2.val().price)
                 var qty = $('#' + snapshot2.key + ' .qty').html();
@@ -259,5 +254,17 @@ function showOrder(order_id) {
 
         }
     });
+
+}
+
+
+function secure() {
+
+    if (currentUser.fullname == "Admin")
+        openPage('adminPage');
+    else
+        window.alert("Sorry " + currentUser.fullname + "You cant access this page");
+
+    openPage('adminPage');
 
 }

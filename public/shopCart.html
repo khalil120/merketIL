@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="font/flaticon.css">
+
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>MarketIL</title>
+
+</head>
+
+<body id="subBody">
+    <div id="subContent">
+        <h1 style="text-align: center; color: lightcoral; margin-top: 10px; margin-bottom: 20px;">Shop cart</h1>
+        <div id="" style="overflow:auto; height:300px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>phone</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                        <th>total price</th>
+                    </tr>
+                </thead>
+                <tbody id="shopCartTableBody">
+
+
+                </tbody>
+            </table>
+        </div>
+        <div id="paymentDiv">
+            <hr id="paySplit">
+            <h4 id="totalPrice"></h4><br>
+            <div id="totalll" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align: center;margin-left:30px; font-size: large; color: rgb(83, 83, 83);"></div>
+            <p style="text-align: center;margin-left:30px;color: rgb(83, 83, 83);">Free Shipping</p>
+            <button type="button" class="btn btn-primary" style="text-align: center; border:0 ;margin-left:715px; width: 113px;  background: lightcoral;" id="payBtn">Buy Now</button>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
+            authDomain: "marketil.firebaseapp.com",
+            databaseURL: "https://marketil.firebaseio.com",
+            projectId: "marketil",
+            storageBucket: "marketil.appspot.com",
+            messagingSenderId: "101178652945",
+            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
+            measurementId: "G-TVHRDQN7PT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="main.js"></script>
+    <script src="shopCart.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

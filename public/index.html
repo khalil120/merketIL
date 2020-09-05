@@ -23,16 +23,50 @@
 
 <body>
 
+
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
+            authDomain: "marketil.firebaseapp.com",
+            databaseURL: "https://marketil.firebaseio.com",
+            projectId: "marketil",
+            storageBucket: "marketil.appspot.com",
+            messagingSenderId: "101178652945",
+            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
+            measurementId: "G-TVHRDQN7PT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="main.js"></script>
+    <script src="search.js"></script>
+    <script src="admin.js"></script>
+
     <div class="container-fluid">
         <div id="page_header">
             <div id="buttons_right_div">
-                <button id="myacc" class="btn" style="color: gray;" onclick="showSignIn()">חשבון שלי<i class="fa fa-user fa-2x" style="color: gray;margin-left:5px;"></i></button>
-                <button class="btn"><i class="fa fa-shopping-cart fa-2x" onclick="openPage('shopCart')" style="color: gray;"></i></button>
+                <button id="myacc" class="btn" style="color: gray;" onclick="showSignIn()">חשבון שלי<i class="fa fa-user fa-2x" style="color: lightcoral;margin-left:5px;"></i></button>
+                <button class="btn"><i class="fa fa-shopping-cart fa-2x" onclick="openPage('shopCart')" style="color: lightcoral;"></i></button>
                 <br>
             </div>
             <div id="buttons_left_div">
-                <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: large; color: gray; margin-left: 47px;">תמיכה תכנית</h3>
-                <button class="btn" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: gray;">
+                <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: large; color: lightcoral; margin-left: 47px;">תמיכה תכנית</h3>
+                <button class="btn" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: lightcoral;">
                   <i class="fa fa-phone fa-1x" style="color: gray;">
                   </i> 0505890122 | 0528738133
               </button>
@@ -177,8 +211,6 @@
                     </div>
 
                     <p id="sign_up_error"></p>
-
-                    <!--<p id="sign_up_success" style="color: green;">All set-up, welcome to MarkeIL</p>-->
                 </div>
 
 
@@ -199,7 +231,7 @@
                             <thead>
                                 <tr>
                                     <th>order date</th>
-                                    <th>status</th>
+                                    <th>quantity</th>
                                     <th>total price</th>
                                 </tr>
                             </thead>
@@ -207,6 +239,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <button id="adminBtn" type="button" class="btn btn-info" onclick="secure()" style="width: 100%">Admin page</button>
                     <button type="button" class="btn btn-primary" onclick="logout()" style="width: 100%">Log out</button>
                 </div>
 
@@ -239,9 +272,8 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>part name</th>
-                                    <th>part price</th>
-                                    <th>quantity</th>
+                                    <th>phone </th>
+                                    <th>price</th>
                                     <th>total price</th>
                                 </tr>
                             </thead>
@@ -272,32 +304,7 @@
 
 
     <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
-            authDomain: "marketil.firebaseapp.com",
-            databaseURL: "https://marketil.firebaseio.com",
-            projectId: "marketil",
-            storageBucket: "marketil.appspot.com",
-            messagingSenderId: "101178652945",
-            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
-            measurementId: "G-TVHRDQN7PT"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
-    <script src="main.js"></script>
-    <script type="module" src="search.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
