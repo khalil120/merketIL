@@ -201,7 +201,7 @@ function getUserFromCookies() {
 function setUserOrders() {
     $('#ordersTableBody').empty();
 
-    console.log("11111111111111111111111111111111");
+    console.log("11111111111111111111111111111111"); ///////////////////////////////////////////////
     return firebase.database.ref('/orders/').once('value').then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
@@ -267,28 +267,22 @@ function secure() {
     else
         window.alert("Sorry " + currentUser.fullname + "You cant access this page");
 
-    openPage('adminPage'); ////////////////////
 
 }
 
 
-function init_firebase() {
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
-        authDomain: "marketil.firebaseapp.com",
-        databaseURL: "https://marketil.firebaseio.com",
-        projectId: "marketil",
-        storageBucket: "marketil.appspot.com",
-        messagingSenderId: "101178652945",
-        appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
-        measurementId: "G-TVHRDQN7PT"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-}
+function addToCart(index) {
+    var company = String(items[index].brand);
+    var m = String(items[index].model);
+    var phone = company + m;
+    var quanity = 1;
+    var price = items[index].price;
 
+    console.log("item added: " + phone + " price is: " + price); ///////////////////////
+
+    addlist(index, phone, price, 1, parseInt(price));
+
+}
 
 function onResizeWindow() {
     var w = window.outerWidth;

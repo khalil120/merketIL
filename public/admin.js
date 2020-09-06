@@ -1,5 +1,6 @@
 let items = new Array(); ///this array contain items list
 let selcted_items = new Array(); // contain th ides of the selcted buttons!!!
+const auth1 = firebase.auth();
 
 function addDevice() {
     let name = $("input#partname").val() + " ";
@@ -43,8 +44,8 @@ function list_items() {
             let price = document.createTextNode(doc.data().price);
 
             let phone = {
-                brand: brand,
-                model: mname,
+                brand: doc.data().brand,
+                model: doc.data().model_name,
                 price: handlePrice(doc.data().price)
             };
 
@@ -77,19 +78,19 @@ function list_items() {
             para.style.borderRadius = "5px";
             para.style.margin = "10px"
 
-            console.log(items[i].model); ///////////////////////////////////////////
-            console.log("price: " + items[i].price) ////////////////////////////////
             i++;
         });
 
-        console.log("total phones = " + items.length); /////////////////////////////////
         $("button").click(function() {
             selcted_items.push(this.id);
-            alert("item has ben added to cart");
+            addToCart(this.id);
+            window.alert(items[this.id].model + "added to your cart - dont forget to confirm your order!");
         });
 
     });
 }
+
+
 
 
 function handlePrice(str) {
