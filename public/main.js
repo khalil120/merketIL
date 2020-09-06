@@ -32,7 +32,6 @@ function showSignIn() {
 
 /*---------   sign in function  ---------*/
 function signIn() {
-    // init_firebase();
     var mail = $("#email_input").val();
     var pass = $("#password_input").val();
     auth.signInWithEmailAndPassword(mail, pass).then(function(user) {
@@ -82,8 +81,8 @@ function signUp() {
 
         if (user) {
             let brand = $('#phone_brand_selector').val();
-            console.log("user id = " + user.uid);
-            firebase.database().ref('users/' + user.uid).set({
+            uid = auth.currentUser.uid;
+            firebase.database().ref('users/' + uid).set({
                 fullname: fullname,
                 brand: brand
             });
@@ -140,7 +139,8 @@ function getUserFromCookies() {
 
 function getUser(user) {
     currentUser = user;
-    return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
+    uid = auth.currentUser.uid;
+    return firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
         currentUser.fullname = snapshot.val().fullname;
         currentUser.brand = snapshot.val().brand;
         saveUserCookie(currentUser);
