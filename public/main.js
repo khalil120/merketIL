@@ -4,6 +4,7 @@ let first_time = true;
 var currentUser = null;
 var cartShopCnt = 0;
 let User_id = null;
+let mobileMode = false;
 
 
 function openPage(pageName) {
@@ -140,7 +141,7 @@ function getUserFromCookies() {
 
 function getUser(user) {
     currentUser = user;
-    return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
+    return firebase.ref('/users/' + user.uid).once('value').then(function(snapshot) {
         currentUser.fullname = snapshot.val().fullname;
         currentUser.brand = snapshot.val().brand;
         saveUserCookie(currentUser);
@@ -227,7 +228,7 @@ function showEditCarDiv() {
 
 
 
-
+///////////////////////////////////////////////////////////to be updated//////////////////////////////////////////
 function showOrder(order_id) {
     $("#orderShopTableBody").empty();
     $('#orderModal').modal('toggle');
@@ -267,7 +268,7 @@ function secure() {
     else
         window.alert("Sorry " + currentUser.fullname + "You cant access this page");
 
-    openPage('adminPage');
+    openPage('adminPage'); ////////////////////
 
 }
 
@@ -287,4 +288,21 @@ function init_firebase() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
+}
+
+
+function onResizeWindow() {
+    var w = window.outerWidth;
+    if (w <= 1050 && mobileMode == false) {
+        mobileMode = true;
+        $('#full_page_header').hide();
+        $('#mobile_page_header').show();
+    }
+    if (w > 1050) {
+        mobileMode = false;
+        $('#full_page_header').show();
+        $('#mobile_page_header').hide();
+    }
+
+
 }
