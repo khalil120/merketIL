@@ -1,6 +1,6 @@
 const auth = firebase.auth();
 //var database = firebase.database();
-
+let first_time = true;
 var currentUser = null;
 var cartShopCnt = 0;
 let User_id = null;
@@ -19,7 +19,7 @@ function openPage2(pageName) {
 
 function showSignIn() {
 
-
+    // init_firebase();
     var user = getUserFromCookies();
     if (user == null) {
         $('#signInModal').modal('toggle');
@@ -32,6 +32,7 @@ function showSignIn() {
 
 /*---------   sign in function  ---------*/
 function signIn() {
+    // init_firebase();
     var mail = $("#email_input").val();
     var pass = $("#password_input").val();
     auth.signInWithEmailAndPassword(mail, pass).then(function(user) {
@@ -113,6 +114,7 @@ function signUp() {
             $("#sign_up_error").show();
         }
     });
+    logout();
     $('#signUpModal').modal('hide');
 
 }
@@ -267,4 +269,22 @@ function secure() {
 
     openPage('adminPage');
 
+}
+
+
+function init_firebase() {
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
+        authDomain: "marketil.firebaseapp.com",
+        databaseURL: "https://marketil.firebaseio.com",
+        projectId: "marketil",
+        storageBucket: "marketil.appspot.com",
+        messagingSenderId: "101178652945",
+        appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
+        measurementId: "G-TVHRDQN7PT"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
 }

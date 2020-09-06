@@ -4,7 +4,9 @@ function addDevice() {
     let os = $("#OS").val();
     let model = $("input#model").val();
     let price = $("input#price").val();
-    let url = $("input#picurl").val();
+    let tmp = $("input#picurl").val();
+
+    let url = "pics/catalog/" + tmp;
 
     var db = firebase.firestore();
     db.collection("shop_list").add({
@@ -15,7 +17,9 @@ function addDevice() {
             price: price
         })
         .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
+            window.alert("DEVICE " + brand + " added successfuly");
+            $("#admin-insert")[0].reset(); //check if working ////////////////////////////////
+
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
@@ -24,14 +28,14 @@ function addDevice() {
 
 
 
-
 function list_items() {
 
-    console.log("testingggggggggg" + "\n");
 
-    let element = document.getElementById("items_div");
+    let element = document.getElementById("catalog");
     var database = firebase.firestore();
     database.collection('shop_list').get().then(function(querySnapshot) {
+
+        //height="400" width="1000"
         querySnapshot.forEach(function(doc) {
             let img = document.createElement('img');
             let para = document.createElement("p");
@@ -39,29 +43,28 @@ function list_items() {
             let os = document.createTextNode(doc.data().OS);
             let brand = document.createTextNode(doc.data().brand);
             let mname = document.createTextNode(doc.data().model_name);
-            img.src = document.createTextNode(doc.data().pic_link);
+            img.src = doc.data().pic_link;
+            img.style.display = "block";
+            img.height = "auto";
+            img.width = "100%";
+            img.style.border = "solid black";
             let price = document.createTextNode(doc.data().price);
 
-            let node = document.createTextNode("text us test");
+            let cartbtn = document.createElement("button");
 
-
-
+            cartbtn.className = "btn btn-dark";
+            cartbtn.type = "button";
+            cartbtn.appendChild(document.createTextNode("Add To Cart 🛒"));
 
             para.appendChild(os);
-            para.appendChild(newLine);
             para.appendChild(brand);
-            para.appendChild(newLine);
             para.appendChild(mname);
-            para.appendChild(newLine);
-            para.appendChild(newLine);
             para.appendChild(price);
-            para.appendChild(newLine);
-            para.appendChild(newLine);
             para.appendChild(img);
-            para.appendChild(node);
+            para.appendChild(cartbtn);
             element.appendChild(para);
 
-            para.style.backgroundColor = "LimeGreen";
+            para.style.backgroundColor = "darkcyan";
             para.style.borderRadius = "5px";
             para.style.margin = "10px"
         });

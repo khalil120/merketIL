@@ -23,7 +23,6 @@
 
 <body>
 
-
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -37,25 +36,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
 
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
-            authDomain: "marketil.firebaseapp.com",
-            databaseURL: "https://marketil.firebaseio.com",
-            projectId: "marketil",
-            storageBucket: "marketil.appspot.com",
-            messagingSenderId: "101178652945",
-            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
-            measurementId: "G-TVHRDQN7PT"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-    </script>
-    <script src="main.js"></script>
-    <script src="search.js"></script>
-    <script src="admin.js"></script>
 
     <div class="container-fluid">
         <div id="page_header">
@@ -304,6 +284,38 @@
 
 
     <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
+
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC88r03oLhZ-VwrW-AlHR97Z1RuYc8vKnc",
+            authDomain: "marketil.firebaseapp.com",
+            databaseURL: "https://marketil.firebaseio.com",
+            projectId: "marketil",
+            storageBucket: "marketil.appspot.com",
+            messagingSenderId: "101178652945",
+            appId: "1:101178652945:web:2e76edb02e118d8c59f4b0",
+            measurementId: "G-TVHRDQN7PT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="main.js"></script>
+    <script src="search.js"></script>
+    <script src="admin.js"></script>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
