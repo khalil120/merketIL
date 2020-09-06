@@ -15,23 +15,34 @@
 
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <title>marketIL</title>
-    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
     <script src="main.js"></script>
 </head>
 
-<body>
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js">
+    console.log("from admin html")
+</script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
 
+<body>
 
     <div class="content" id="admin-insert">
         <br><br><br>
         <h2>Add Device</h2>
         <input type="text" class="form-control parts_inputs" id="partname" placeholder="Device Name"><br>
         <select class="form-control parts_inputs" id="brand">
-			<option>Check in Device brand</option>
+			<option>Device brand</option>
             <option>Samsung</option>
             <option>Iphone</option>
             <option>Huawie</option>
             <option>Pixel</option>
+            <option>oppo</option>
         </select><br>
         <select class="form-control parts_inputs" id="OS">
 			<option>Form of OS</option>
@@ -47,18 +58,6 @@
     </div>
 
     <!----------------------------------------------------------------------- ADD-ONS ---------------------------------------------------------------->
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
-
-    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
-
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
-
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {

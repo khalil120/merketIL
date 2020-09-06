@@ -1,5 +1,4 @@
 const auth = firebase.auth();
-//var database = firebase.database();
 let first_time = true;
 var currentUser = null;
 var cartShopCnt = 0;
@@ -83,6 +82,7 @@ function signUp() {
 
         if (user) {
             let brand = $('#phone_brand_selector').val();
+            console.log("user id = " + user.uid);
             firebase.database().ref('users/' + user.uid).set({
                 fullname: fullname,
                 brand: brand
@@ -115,7 +115,6 @@ function signUp() {
             $("#sign_up_error").show();
         }
     });
-    logout();
     $('#signUpModal').modal('hide');
 
 }
@@ -141,7 +140,7 @@ function getUserFromCookies() {
 
 function getUser(user) {
     currentUser = user;
-    return firebase.ref('/users/' + user.uid).once('value').then(function(snapshot) {
+    return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
         currentUser.fullname = snapshot.val().fullname;
         currentUser.brand = snapshot.val().brand;
         saveUserCookie(currentUser);

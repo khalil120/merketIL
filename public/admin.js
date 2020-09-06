@@ -58,9 +58,11 @@ function list_items() {
 
             let cartbtn = document.createElement("button");
 
-            cartbtn.className = "btn btn-dark";
+            cartbtn.className = "btn btn-secondary";
             cartbtn.id = i;
             cartbtn.type = "button";
+            cartbtn.style.position = "relative";
+            cartbtn.style.left = "40%";
             cartbtn.appendChild(document.createTextNode("Add To Cart 🛒"));
 
             para.appendChild(os);
@@ -71,16 +73,16 @@ function list_items() {
             para.appendChild(cartbtn);
             element.appendChild(para);
 
-            para.style.backgroundColor = "darkcyan";
+            para.style.backgroundColor = "white";
             para.style.borderRadius = "5px";
             para.style.margin = "10px"
 
-            console.log(items[i].model);
-            console.log("price: " + items[i].price)
+            console.log(items[i].model); ///////////////////////////////////////////
+            console.log("price: " + items[i].price) ////////////////////////////////
             i++;
         });
 
-        console.log("total phones = " + items.length);
+        console.log("total phones = " + items.length); /////////////////////////////////
         $("button").click(function() {
             selcted_items.push(this.id);
             alert("item has ben added to cart");
