@@ -21,6 +21,11 @@ function addlist(id, name, price, qty, total) {
     });
 }
 
+function submitOrder() {
+    $('#orderModal').modal('toggle');
+    console.log("trying to open orderModal not working :( ");
+}
+
 $(document).ready(function() {
     var tt = 0;
     return firebase.database().ref('/cart/').once('value').then(function(snapshot) {

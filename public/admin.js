@@ -4,7 +4,7 @@ const auth1 = firebase.auth();
 
 function addDevice() {
     let name = $("input#partname").val() + " ";
-    let brand = $("#brand").val(+" ");
+    let brand = $("#brand").val() + " ";
     let os = $("#OS").val() + " ";
     let price = "$" + $("input#price").val();
     let url = "pics/catalog/" + $("input#picurl").val();

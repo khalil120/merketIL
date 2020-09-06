@@ -54,9 +54,36 @@
             <h4 id="totalPrice"></h4><br>
             <div id="totalll" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align: center;margin-left:30px; font-size: large; color: rgb(83, 83, 83);"></div>
             <p style="text-align: center;margin-left:30px;color: rgb(83, 83, 83);">Free Shipping</p>
-            <button type="button" class="btn btn-primary" style="text-align: center; border:0 ;margin-left:715px; width: 113px;  background: lightcoral;" id="payBtn">Buy Now</button>
+            <button type="button" class="btn btn-primary" style="text-align: center; border:0 ;margin-left:715px; width: 113px;  background: lightcoral;" onclick="submitOrder()" id="payBtn">Buy Now</button>
         </div>
 
+    </div>
+
+
+    <div class="modal" id="orderModal">
+        <div class="modal-dialog" id="orderModalContent">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1>Order details</h1>
+                    <div style="overflow:auto; height:300px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>phone </th>
+                                    <th>price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderShopTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
     </div>
 
 

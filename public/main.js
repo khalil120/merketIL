@@ -66,6 +66,11 @@ function signUp() {
     $("#password_signup").css("border-color", "#ccc");
     var email = $("#email_signup").val();
     var pass = $("#password_signup").val();
+    var shoPass = false
+    if (pass.length < 6) {
+        shortPass = true;
+        pass = "";
+    }
     var fullname = $("#fullname_signup").val();
     let res = /^[a-zA-Z ]+$/.test(fullname);
     if (res == false) {
@@ -108,7 +113,7 @@ function signUp() {
             $("#email_signup").css("border-color", "red")
             $("#sign_up_error").show();
         }
-        if (errorCode == "auth/weak-password") {
+        if (errorCode == "auth/weak-password" || shortPass) {
             $("#sign_up_error").text("weak password")
             $("#password_signup").css("border-color", "red")
             $("#sign_up_error").show();
@@ -219,13 +224,13 @@ function setUserOrders() {
 
     })
 }
-
+////////////////////////////////////////////////////////////
 function showEditCarDiv() {
     $("#car_info_div").hide();
     $("#car_update_div").show();
 }
 
-
+/////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////to be updated//////////////////////////////////////////
 function showOrder(order_id) {
