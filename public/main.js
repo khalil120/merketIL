@@ -1,4 +1,4 @@
-const auth = firebase.auth();
+let auth = firebase.auth();
 let first_time = true;
 var currentUser = null;
 var cartShopCnt = 0;
@@ -19,7 +19,6 @@ function openPage2(pageName) {
 
 function showSignIn() {
 
-    // init_firebase();
     var user = getUserFromCookies();
     if (user == null) {
         $('#signInModal').modal('toggle');
@@ -41,7 +40,6 @@ function signIn() {
         }
     }, function(error) {
         var errorCode = error.code;
-        var errorMessage = error.message;
         alert(errorCode)
 
         if (errorCode == "auth/user-not-found" || errorCode == "auth/invalid-email" || errorCode == "auth/wrong-password") {
@@ -120,6 +118,7 @@ function signUp() {
         }
     });
     $('#signUpModal').modal('hide');
+    $('#signInModal').modal('hide');
 
 }
 
@@ -206,16 +205,17 @@ function getUserFromCookies() {
 function setUserOrders() {
     $('#ordersTableBody').empty();
 
-    console.log("11111111111111111111111111111111"); ///////////////////////////////////////////////
+    console.log("last problem");
     return firebase.database.ref('/orders/').once('value').then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
             $('#ordersTableBody').append($(' <tr>\n' +
-                '                                    <td>' + childSnapshot.val().model + '</td>\n' +
-                '                                    <td>' + childSnapshot.val().date + '</td>\n' +
-                '                                    <td>' + childSnapshot.val().status + '</td>\n' +
-                '                                    <td>' + childSnapshot.val().price + '</td>\n' +
+                '                                    <td>' + childData.named + '</td>\n' +
+                '                                    <td>' + childKey + '</td>\n' +
+                '                                    <td>' + childData.date + '</td>\n' +
+                '                                    <td>' + childData.qtyd + '</td>\n' +
+                '                                    <td>' + childData.totald + '</td>\n' +
                 '                                    <td>' + '<button type="button" class="btn btn-primary delete_btn" onclick="showOrder(' + "'" + childKey + "'" + ')">show</button>' + '</td>\n' +
                 '                                </tr>'));
 

@@ -1,6 +1,5 @@
 let items = new Array(); ///this array contain items list
 let selcted_items = new Array(); // contain th ides of the selcted buttons!!!
-const auth1 = firebase.auth();
 
 function addDevice() {
     let name = $("input#partname").val() + " ";
