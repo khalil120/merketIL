@@ -25,12 +25,19 @@ function submitOrder() {
     var randid = Math.floor(Math.random() * 99999999) + 9999;
     var d = new Date();
     randid = randid + d.getTime();
+    let keys = new Array();
+    let data = new Array();
+
+    $('#shopCartTableBody').empty();
+    $('#totalll').hide();
 
     return firebase.database().ref('/cart/').once('value').then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
-            console.log(childKey);
+            keys.push(childKey);
+            data.push(childData);
+            //display the order details
             $('#orderShopTableBody').append($(
                 '<tr id="' + childKey + '">\n' +
                 '        <td>  ' + childData.named + '  </td> \n ' +
@@ -40,15 +47,20 @@ function submitOrder() {
 
                 +'</tr>'
             ));
-            firebase.database().ref('/orders/' + randid).set({
-                named: childData.named,
-                priced: childData.priced,
-                qtyd: childData.qtyd,
-                totald: childData.totald,
+        });
+        //add the order to the orders database
+        for (i = 0; i < keys.length; i++) {
+            firebase.database().ref('/orders/' + keys[i]).set({
+
+                named: data[i].named,
+                priced: data[i].priced,
+                qtyd: data[i].qtyd,
+                totald: data[i].totald,
                 date: d.getDate()
             });
-        });
+        }
     })
+
 
 }
 
@@ -74,5 +86,7 @@ $(document).ready(function() {
         });
         $("#totalll").text("Total " + tt + "$");
     })
+
+
 
 });

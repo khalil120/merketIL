@@ -205,8 +205,7 @@ function getUserFromCookies() {
 function setUserOrders() {
     $('#ordersTableBody').empty();
 
-    console.log("last problem");
-    return firebase.database.ref('/orders/').once('value').then(function(snapshot) {
+    return firebase.database().ref('/orders/').once('value').then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
@@ -216,52 +215,12 @@ function setUserOrders() {
                 '                                    <td>' + childData.date + '</td>\n' +
                 '                                    <td>' + childData.qtyd + '</td>\n' +
                 '                                    <td>' + childData.totald + '</td>\n' +
-                '                                    <td>' + '<button type="button" class="btn btn-primary delete_btn" onclick="showOrder(' + "'" + childKey + "'" + ')">show</button>' + '</td>\n' +
                 '                                </tr>'));
 
 
         });
 
     })
-}
-////////////////////////////////////////////////////////////
-function showEditCarDiv() {
-    $("#car_info_div").hide();
-    $("#car_update_div").show();
-}
-
-/////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////to be updated//////////////////////////////////////////
-function showOrder(order_id) {
-    $("#orderShopTableBody").empty();
-    $('#orderModal').modal('toggle');
-    return database.ref('/orders/' + order_id).once('value').then(function(snapshot) {
-        var shopArr = JSON.parse(snapshot.val().shop)
-        for (var i = 0; i < shopArr.shop.length; i++) {
-            $('#orderShopTableBody').append($(' <tr id="' + shopArr.shop[i].part_id + '">\n' +
-                '                                    <td class="partname">' + '' + '</td>\n' +
-                '                                    <td class="partprice">' + '' + '</td>\n' +
-                '                                    <td class="qty">' + shopArr.shop[i].qty + '</td>\n' +
-                '                                    <td class="totalQtyPrice">' + '' + '</td>\n' +
-                '                                </tr>'));
-            firebase.database().ref('/parts/' + shopArr.shop[i].part_id).once('value').then(function(snapshot2) {
-                $('#' + snapshot2.key + ' .partname').html(snapshot2.val().name)
-                $('#' + snapshot2.key + ' .partprice').html(snapshot2.val().price)
-                var qty = $('#' + snapshot2.key + ' .qty').html();
-                $('#' + snapshot2.key + ' .totalQtyPrice').html(snapshot2.val().price * qty)
-
-                totalPrice = snapshot2.val().price * qty + totalPrice;
-                $("#totalPrice").text("total price: " + totalPrice)
-                if (totalPrice > 0) {
-                    $('#payBtn').attr("disabled", false);
-                }
-            });
-
-
-        }
-    });
-
 }
 
 
@@ -282,11 +241,7 @@ function addToCart(index) {
     var phone = company + m;
     var quanity = 1;
     var price = items[index].price;
-
-    console.log("item added: " + phone + " price is: " + price); ///////////////////////
-
     addlist(index, phone, price, 1, parseInt(price));
-
 }
 
 function onResizeWindow() {
